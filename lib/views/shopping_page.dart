@@ -63,7 +63,19 @@ class ShoppingPage extends StatelessWidget {
                                   onPressed: () {
                                     cartController.addToCart(controller.products[index]);
                                   },
-                                )
+                                ),
+                                Obx(() {
+                                  return IconButton(
+                                    icon: controller.products[index].isFavorite.value
+                                        ? const Icon(Icons.check_box_rounded)
+                                        : const Icon(
+                                            Icons.check_box_outline_blank,
+                                          ),
+                                    onPressed: () {
+                                      controller.products[index].isFavorite.toggle();
+                                    },
+                                  );
+                                })
                               ],
                             ),
                           ),
@@ -73,15 +85,28 @@ class ShoppingPage extends StatelessWidget {
                   },
                 ),
               ),
-              GetX<CartController>(builder: (controller) {
-                return Text(
-                  "Total Amount: ${controller.totalPrice}",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                );
-              }),
+              // GetBuilder<CartController>(
+              //   builder: (controller) {
+              //     return Text(
+              //       "Total Amount ${controller.testAmount}",
+              //       style: const TextStyle(
+              //         color: Colors.white,
+              //         fontSize: 20,
+              //       ),
+              //     );
+              //   },
+              // ),
+              GetX<CartController>(
+                builder: (controller) {
+                  return Text(
+                    "Total Amount: ${controller.totalPrice}",
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  );
+                },
+              ),
               const SizedBox(height: 100),
             ],
           ),

@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class Product {
   Product({
     this.id,
@@ -12,4 +14,7 @@ class Product {
   final String? productImage;
   final String? productDescription;
   final double? price;
+
+  final isFavorite = false.obs;
+  final quantity = 1.obs;
 }
